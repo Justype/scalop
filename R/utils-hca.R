@@ -12,8 +12,8 @@
     method = match.arg(method, scalop::dist.methods)
     if (!is_square(m)) m = t(m)
     if (!is.null(max.dist)) {
-        if (is_square(m) && unique(diag(m)) != max.dist) {
-            warning("<max.dist> = ", max.dist, " but <m> diagonal = ", unique(diag(m)), "...")
+        if (is_square(m) && !all(diag(m) == max.dist)) {
+            warning("<max.dist> = ", max.dist, " but <m> diagonal = ", paste(unique(diag(m)), collapse = ", "), "...")
         }
         m = max.dist - m
     }
